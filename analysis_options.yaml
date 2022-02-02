@@ -1,0 +1,14 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    avoid_print: true
+    avoid_empty_else: true
+    avoid_relative_lib_imports: true
+    empty_statements: true
+    always_declare_return_types: true
+    avoid_void_async: true
+    file_names: true
+    unnecessary_parenthesis: true
+    unnecessary_new: true
