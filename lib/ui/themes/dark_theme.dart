@@ -12,4 +12,5 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
     ),
   ),
+  fontFamily: 'Montserrat',
 );

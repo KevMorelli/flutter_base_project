@@ -1,16 +1,20 @@
 # flutter_base_project
 
-A new Flutter project.
+This project aims to have a functioning starting point for new apps.
+
+## Including:
+- Clean architecture, using [Riverpod](https://riverpod.dev/)
+- Dark/light theme support
+
+## Todo:
+- Notifications support
+- Script to create a new project
+- Shared preferences and secure storage usage
+- Ready-to-use API client
+- Dialog service
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Clone this project and then find-and-replace `flutter_base_project` and `flutterBaseProject` with the project name you desire.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Also, change the `PRODUCT_BUNDLE_IDENTIFIER` in `ios/Runner.xcodeproj/project.pbxproj`, because you can't upload an iOS app with it starting with `com.example`
