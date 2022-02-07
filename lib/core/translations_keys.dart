@@ -1,3 +1,3 @@
 class Translations {
-  static const String test = 'test';
+  static const String counterLabel = 'counterLabel';
 }

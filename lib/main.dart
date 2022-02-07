@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter_base_project/core/top_level_providers.dart';
+import 'package:flutter_base_project/core/providers.dart';
 import 'package:flutter_base_project/core/translations_keys.dart';
 import 'package:flutter_base_project/ui/themes/dark_theme.dart';
 import 'package:flutter_base_project/ui/themes/light_theme.dart';
@@ -18,10 +18,10 @@ void main() async {
 
   final container = ProviderContainer();
 
-  container.read(versionTrackerProvider).track(buildHistoryMaxLength: 10, versionHistoryMaxLength: 10);
+  container.read(Providers.versionTrackerProvider).track(buildHistoryMaxLength: 10, versionHistoryMaxLength: 10);
 
   const app = App();
-  container.read(errorHandlerProvider).setHandler(app);
+  container.read(Providers.errorHandlerProvider).setHandler(app);
 
   runApp(
     EasyLocalization(
@@ -49,23 +49,20 @@ class App extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(title: 'Flutter Demo Home Page'),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
     );
   }
 }
 
-class MyHomePage extends ConsumerWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class HomePage extends ConsumerWidget {
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final count = ref.watch(counterProvider);
-    // final counter = ref.read(counterProvider);
-    context.setLocale(const Locale('es'));
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -75,21 +72,14 @@ class MyHomePage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              tr(Translations.test),
+              tr(Translations.counterLabel),
             ),
-            Text(
-              '1', //count.toString(),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            TextButton(
-              onPressed: () => {context.setLocale(const Locale('es'))},
-              child: const Text('Test'),
-            ),
+            const CounterWidget(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () => ref.read(Providers.counterViewModel).increase(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -97,20 +87,21 @@ class MyHomePage extends ConsumerWidget {
   }
 }
 
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
+class CounterWidget extends ConsumerStatefulWidget {
+  const CounterWidget({Key? key}) : super(key: key);
 
-//   void _incrementCounter() {
-//     try {
-//       throw 'Test exception';
-//     } catch (error, stackTrace) {
-//       errorHandler!.reportError(error, stackTrace);
-//     }
-//     setState(() {
-//       _counter++;
-//     });
-//   }
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _CounterWidgetState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {}
-// }
+class _CounterWidgetState extends ConsumerState<CounterWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final _counterViewModel = ref.watch(Providers.counterViewModel);
+
+    return Text(
+      _counterViewModel.counter.toString(),
+      style: Theme.of(context).textTheme.headline4,
+    );
+  }
+}
