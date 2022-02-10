@@ -2,7 +2,7 @@ import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry/sentry.dart';
 
-class ErrorHandler {
+class ErrorHandlerService {
   void setHandler(Widget rootWidget) {
     CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
 

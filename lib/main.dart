@@ -2,8 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_base_project/core/localization/locale_constants.dart';
+import 'package:flutter_base_project/core/localization/locale_keys.g.dart';
 import 'package:flutter_base_project/core/providers.dart';
-import 'package:flutter_base_project/core/translations_keys.dart';
 import 'package:flutter_base_project/ui/themes/dark_theme.dart';
 import 'package:flutter_base_project/ui/themes/light_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,10 +19,10 @@ void main() async {
 
   final container = ProviderContainer();
 
-  container.read(Providers.versionTrackerProvider).track(buildHistoryMaxLength: 10, versionHistoryMaxLength: 10);
+  container.read(Providers.versionTrackerService).track(buildHistoryMaxLength: 10, versionHistoryMaxLength: 10);
 
   const app = App();
-  container.read(Providers.errorHandlerProvider).setHandler(app);
+  container.read(Providers.errorHandlerService).setHandler(app);
 
   runApp(
     EasyLocalization(
@@ -29,9 +30,9 @@ void main() async {
         enabled: !kReleaseMode && kIsWeb,
         builder: (context) => const ProviderScope(child: app),
       ),
-      supportedLocales: const [Locale('en'), Locale('es')],
-      fallbackLocale: const Locale('en'),
-      path: 'assets/translations',
+      supportedLocales: LocaleConstants.supportedLocales,
+      fallbackLocale: LocaleConstants.fallbackLocale,
+      path: LocaleConstants.languagesPath,
     ),
   );
 }
@@ -72,7 +73,7 @@ class HomePage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              tr(Translations.counterLabel),
+              tr(LocaleKeys.counterLabel),
             ),
             const CounterWidget(),
           ],

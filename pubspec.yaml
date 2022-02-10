@@ -39,4 +39,4 @@ flutter:
         - asset: assets/fonts/Montserrat-Thin.ttf
           weight: 100
   assets:
-    - assets/translations/
+    - assets/languages/
