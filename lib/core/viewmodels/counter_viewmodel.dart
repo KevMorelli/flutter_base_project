@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CounterViewModel extends ChangeNotifier {
+class HomeViewModel extends ChangeNotifier {
   int counter = 0;
 
   void increase() {

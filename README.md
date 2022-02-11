@@ -3,15 +3,21 @@
 This project aims to have a functioning starting point for new apps.
 
 ## Including:
-- Clean architecture, using [Riverpod](https://riverpod.dev/)
-- Dark/light theme support
+- Clean code architecture using [Riverpod](https://riverpod.dev/)
+- Dark/light theme support with custom font
+- Localization using [easy_localization](https://pub.dev/packages/easy_localization)
+- Version tracking using [VersionTracker](https://pub.dev/packages/version_tracker)
+- Error reported to Sentry service using [Catcher](https://pub.dev/packages/catcher)
+- Device preview for UI build when launching web using [Device Preview](https://pub.dev/packages/device_preview)
+
 
 ## Todo:
-- Notifications support
 - Script to create a new project
 - Shared preferences and secure storage usage
 - Ready-to-use API client
 - Dialog service
+- https://pub.dev/packages/flutter_launcher_icons
+- https://pub.dev/packages/flutter_native_splash
 
 ## Getting Started
 
